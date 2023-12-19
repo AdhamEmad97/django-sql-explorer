@@ -228,19 +228,19 @@ export class ExplorerEditor {
         $(".sort").click(function(e) {
             var t = $(e.target).data("sort");
             var dir = $(e.target).data("dir");
-            $(".sort").addClass("bi-arrow-down-up");
-            $(".sort").removeClass("bi-arrow-down");
-            $(".sort").removeClass("bi-arrow-up");
+            $(".sort").addClass("bi-chevron-expand");
+            $(".sort").removeClass("bi-chevron-down");
+            $(".sort").removeClass("bi-chevron-up");
             if (dir === "asc"){
                 $(e.target).data("dir", "desc");
-                $(e.target).addClass("bi-arrow-up");
-                $(e.target).removeClass("bi-arrow-down");
-                $(e.target).removeClass("bi-arrow-down-up");
+                $(e.target).addClass("bi-chevron-up");
+                $(e.target).removeClass("bi-chevron-down");
+                $(e.target).removeClass("bi-chevron-expand");
             } else {
                 $(e.target).data("dir", "asc");
-                $(e.target).addClass("bi-arrow-down");
-                $(e.target).removeClass("bi-arrow-up");
-                $(e.target).removeClass("bi-arrow-down-up");
+                $(e.target).addClass("bi-chevron-down");
+                $(e.target).removeClass("bi-chevron-up");
+                $(e.target).removeClass("bi-chevron-expand");
             }
             var vals = [];
             var ct = 0;
