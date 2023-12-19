@@ -9,7 +9,7 @@
     <title>{% trans "SQL Explorer" %}{% if query %} - {{ query.title }}{% elif title %} - {{ title }}{% endif %}</title>
 
     {% block style %}
-      {% vite_asset 'scss/main.scss' %}
+        {% vite_asset 'scss/main.scss' %}
     {% endblock style %}
 
     <script type="text/javascript">
@@ -20,53 +20,54 @@
 </head>
 
 <body>
-  {% block sql_explorer_content_takeover %}
+{% block sql_explorer_content_takeover %}
     <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" href="{% url 'explorer_index' %}">{% trans "SQL Explorer" %}</a>
+            <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+               href="{% url 'explorer_index' %}">{% trans "SQL Explorer" %}</a>
             <ul class="nav nav-pills">
                 {% if can_change %}
                     <li class="nav-item">
-                        <a class="nav-link{% if not query and view_name == 'query_create' %} active{% endif %}" href="{% url 'query_create' %}">{% trans "New Query" %}</a>
+                        <a class="nav-link{% if not query and view_name == 'query_create' %} active{% endif %}"
+                           href="{% url 'query_create' %}">{% trans "New Query" %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{% if not query and view_name == 'explorer_playground' %} active{% endif %}" href="{% url 'explorer_playground' %}">{% trans "Playground" %}</a>
+                        <a class="nav-link{% if not query and view_name == 'explorer_playground' %} active{% endif %}"
+                           href="{% url 'explorer_playground' %}">{% trans "Playground" %}</a>
                     </li>
                 {% endif %}
                 {% if query %}
                     <li class="nav-item"><a class="nav-link active" href="">{% trans "Query Detail" %}</a></li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link{% if not query and view_name == 'explorer_logs' %} active{% endif %}" href="{% url 'explorer_logs' %}">{% trans "Logs" %}</a>
+                    <a class="nav-link{% if not query and view_name == 'explorer_logs' %} active{% endif %}"
+                       href="{% url 'explorer_logs' %}">{% trans "Logs" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{% if not query and view_name == 'query_favorites' %} active{% endif %}" href="{% url 'query_favorites' %}">{% trans "Favorite Queries" %}</a>
+                    <a class="nav-link{% if not query and view_name == 'query_favorites' %} active{% endif %}"
+                       href="{% url 'query_favorites' %}">{% trans "Favorite Queries" %}</a>
                 </li>
             </ul>
         </header>
     </div>
     <div class="container">
-        <div class="starter-template">
-            {% block sql_explorer_content %}{% endblock %}
-        </div>
+        {% block sql_explorer_content %}{% endblock %}
     </div>
-  {% endblock %}
-    {% block sql_explorer_footer %}
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <p class="text-muted">
-                        Powered by <a href="https://www.github.com/chrisclark/django-sql-explorer/">django-sql-explorer</a>. Rendered at {% now "SHORT_DATETIME_FORMAT" %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    {% endblock %}
-    {% block bottom_script %}
-      {% vite_hmr_client %}
-      {% vite_asset 'js/src/main.js' %}
-    {% endblock bottom_script %}
-    {% block sql_explorer_scripts %}{% endblock %}
+{% endblock %}
+{% block sql_explorer_footer %}
+    <div class="container">
+        <footer class="py-3 my-4">
+            <p class="text-center text-body-secondary border-top pt-3">
+                Powered by <a href="https://www.github.com/chrisclark/django-sql-explorer/">django-sql-explorer</a>. Rendered at {% now "SHORT_DATETIME_FORMAT" %}
+            </p>
+        </footer>
+    </div>
+{% endblock %}
+{% block bottom_script %}
+    {% vite_hmr_client %}
+    {% vite_asset 'js/src/main.js' %}
+{% endblock bottom_script %}
+{% block sql_explorer_scripts %}{% endblock %}
 </body>
 
 </html>

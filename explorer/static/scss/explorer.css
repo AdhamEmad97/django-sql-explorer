@@ -23,10 +23,6 @@
     overflow: auto; height: 500px;
 }
 
-.list-search {
-    margin-top: 20px;
-}
-
 .data-headers {
     background: white;
 }
@@ -39,10 +35,6 @@
 .list {
     -webkit-padding-start: 0px;
     list-style: none;
-}
-
-.wrap {
-    padding-bottom: 15rem; /* ensure space for drop down buttons */
 }
 
 .schema-wrapper {
