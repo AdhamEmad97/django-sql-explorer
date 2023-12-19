@@ -86,10 +86,8 @@ td.name.indented {
     vertical-align: top;
 }
 
-span.sort {
-    background: url('//cdn.datatables.net/1.10.0/images/sort_both.png') no-repeat;
+div.sort {
     cursor: pointer;
-    padding-left: 20px;
 }
 
 .pivot-table {

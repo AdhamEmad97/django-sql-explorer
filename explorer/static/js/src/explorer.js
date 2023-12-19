@@ -239,13 +239,19 @@ export class ExplorerEditor {
         $(".sort").click(function(e) {
             var t = $(e.target).data("sort");
             var dir = $(e.target).data("dir");
-            $(".sort").css("background-image", "url(//cdn.datatables.net/1.10.0/images/sort_both.png)")
+            $(".sort").addClass("bi-arrow-down-up");
+            $(".sort").removeClass("bi-arrow-down");
+            $(".sort").removeClass("bi-arrow-up");
             if (dir === "asc"){
                 $(e.target).data("dir", "desc");
-                $(e.target).css("background-image", "url(//cdn.datatables.net/1.10.0/images/sort_asc.png)")
+                $(e.target).addClass("bi-arrow-up");
+                $(e.target).removeClass("bi-arrow-down");
+                $(e.target).removeClass("bi-arrow-down-up");
             } else {
                 $(e.target).data("dir", "asc");
-                $(e.target).css("background-image", "url(//cdn.datatables.net/1.10.0/images/sort_desc.png)")
+                $(e.target).addClass("bi-arrow-down");
+                $(e.target).removeClass("bi-arrow-up");
+                $(e.target).removeClass("bi-arrow-down-up");
             }
             var vals = [];
             var ct = 0;

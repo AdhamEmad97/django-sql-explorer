@@ -9,7 +9,6 @@
 </head>
 
 <body>
-{% spaceless %}
   <h2>
       {% if query %}
           {{ query.title }}{% if shared %}<small>&nbsp;&nbsp;shared</small>{% endif %}
@@ -17,7 +16,6 @@
           {% trans "New Query" %}
       {% endif %}
   </h2>
-{% endspaceless %}
   <table class="table table-striped">
       <thead>
           <tr>

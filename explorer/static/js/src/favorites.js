@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+// TODO: This isn't quite working. Doesn't toggle cleanly.
 export function toggleFavorite() {
     let queryId = $(this).data('id');
     let favoriteUrl =  $(this).data('url');
