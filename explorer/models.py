@@ -62,6 +62,9 @@ class Query(models.Model):
     def get_run_count(self):
         return self.querylog_set.count()
 
+    def avg_duration_display(self):
+        return "{:10.3f}".format(self.avg_duration())
+
     def avg_duration(self):
         return self.querylog_set.aggregate(
             models.Avg('duration')
