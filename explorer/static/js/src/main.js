@@ -33,6 +33,28 @@ const route_initializers = {
     explorer_playground: function() {
         new ExplorerEditor('new');
     },
+    explorer_schema: function() {
+        function SearchFocus() {
+            if (!$(window.parent.document.getElementById("schema_frame")).hasClass('no-autofocus')) {
+                $(".search").focus();
+            }
+        }
+        let options = {
+            valueNames: [ 'name', 'app' ],
+            handlers: { 'updated': [SearchFocus] }
+        };
+        new List('tables', options);
+
+        $('#collapse_all').click(function(){
+            $('.schema-table').hide();
+        });
+        $('#expand_all').click(function(){
+            $('.schema-table').show();
+        });
+        $('.schema-header').click(function(){
+            $(this).parent().find('.schema-table').toggle();
+        });
+    }
 };
 
 function getCsrfToken() {
