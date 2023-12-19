@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col">
                                 {% if data %}
-                                    <a title="Show row numbers" id="counter-toggle" href="#">#</a>&nbsp
+                                    <a title="Show row numbers" id="counter-toggle" href="#"><i class="bi-hash"></i></a>&nbsp
                                 {% endif %}
                                 {% blocktrans trimmed with duration=duration|floatformat:2 %}
                                     Execution time: {{ duration }} ms

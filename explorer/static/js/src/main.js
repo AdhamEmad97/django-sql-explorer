@@ -6,7 +6,7 @@ import {ExplorerEditor} from "./explorer"
 import {setupList} from "./query-list"
 import List from 'list.js'
 import $ from "jquery";
-import cookie from "cookiejs";
+import {getCsrfToken} from "./csrf";
 
 const route_initializers = {
     explorer_index: function() {
@@ -28,7 +28,13 @@ const route_initializers = {
         setupList();
     },
     query_detail: function() {
+        document.querySelectorAll('.query_favorite_toggle').forEach(function(element) {
+            element.addEventListener('click', toggleFavorite);
+        });
         new ExplorerEditor(queryId);
+    },
+    query_create: function() {
+        new ExplorerEditor('new');
     },
     explorer_playground: function() {
         new ExplorerEditor('new');
@@ -56,14 +62,6 @@ const route_initializers = {
         });
     }
 };
-
-function getCsrfToken() {
-    if (csrfCookieHttpOnly) {
-        return $('[name=csrfmiddlewaretoken]').val();
-    }
-
-    return cookie.get(csrfCookieName);
-}
 
 $.ajaxSetup({
     beforeSend: function(xhr) {
