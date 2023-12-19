@@ -1,12 +1,22 @@
 import $ from 'jquery';
 
-import { EditorView } from "@codemirror/view";
+import {basicSetup, EditorView } from "codemirror";
+import {sql} from "@codemirror/lang-sql"
+import {languages} from "@codemirror/language-data"
+
 import cookie from 'cookiejs';
 import List from 'list.js'
-import floatHead from 'floatthead';
 
-function editorFromTextArea(textarea, extensions) {
-    let view = new EditorView({doc: textarea.value, extensions})
+import 'floatthead'
+
+
+function editorFromTextArea(textarea) {
+    let view = new EditorView({
+        doc: textarea.value,
+        extensions: [
+            basicSetup,
+            sql({codeLanguages: languages}),
+        ]})
     textarea.parentNode.insertBefore(view.dom, textarea)
     textarea.style.display = "none"
     if (textarea.form) textarea.form.addEventListener("submit", () => {
@@ -19,7 +29,6 @@ export class ExplorerEditor {
     constructor(queryId) {
         this.queryId = queryId;
         this.$table = $("#preview");
-        this.domTable = document.getElementById("preview");
         this.$rows = $("#rows");
         this.$form = $("form");
         this.$snapshotField = $("#id_snapshot");
@@ -30,7 +39,7 @@ export class ExplorerEditor {
             this.$submit = $("#refresh_button");
         }
 
-        this.editor = editorFromTextArea(document.getElementById("id_sql"), []);
+        this.editor = editorFromTextArea(document.getElementById("id_sql"));
 
         this.bind();
 
@@ -218,13 +227,13 @@ export class ExplorerEditor {
             e.preventDefault();
             $(".stats-expand").hide();
             $(".stats-wrapper").show();
-            this.domTable.floatThead("reflow");
+            this.$table.floatThead("reflow");
         }.bind(this));
 
         $("#counter-toggle").click(function(e) {
             e.preventDefault();
             $(".counter").toggle();
-            this.domTable.floatThead("reflow");
+            this.$table.floatThead("reflow");
         }.bind(this));
 
         $(".sort").click(function(e) {
