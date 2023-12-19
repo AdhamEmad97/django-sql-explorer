@@ -170,17 +170,6 @@ export class ExplorerEditor {
             this.$form.append(this.$snapshotField);
         }.bind(this));
 
-        $("#save_only").click(function() {
-            var params = this.getParams(this);
-            if(params) {
-                this.$form.attr("action", "../" + this.queryId + "/?show=0&params=" + this.serializeParams(params));
-            } else {
-                this.$form.attr("action", "../" + this.queryId + "/?show=0");
-            }
-            this.$snapshotField.hide();
-            this.$form.append(this.$snapshotField);
-        }.bind(this));
-
         $("#refresh_button").click(function(e) {
             e.preventDefault();
             var params = this.getParams();
