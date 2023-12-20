@@ -8,6 +8,8 @@ import cookie from 'cookiejs';
 import List from 'list.js'
 
 import 'floatthead'
+import {getCsrfToken} from "./csrf";
+import {toggleFavorite} from "./favorites";
 
 
 function editorFromTextArea(textarea) {
@@ -108,9 +110,28 @@ export class ExplorerEditor {
     }
 
     formatSql() {
-        $.post("../format/", {sql: this.editor.getValue() }, function(data) {
-            this.editor.setValue(data.formatted);
-        }.bind(this));
+        let sqlText = this.editor.state.doc.toString();
+        let editor = this.editor;
+
+        $.ajax({
+            url: "../format/",
+            type: "POST",
+            headers: {
+                'X-CSRFToken': getCsrfToken()
+            },
+            data: {
+                sql: sqlText
+            },
+            success: function(data) {
+                editor.dispatch({
+                    changes: {
+                        from: 0,
+                        to: editor.state.doc.length,
+                        insert: data.formatted
+                    }
+                })
+            }.bind(this)
+        });
     }
 
     showRows() {
@@ -147,6 +168,10 @@ export class ExplorerEditor {
     }
 
     bind() {
+        document.querySelectorAll('.query_favorite_toggle').forEach(function(element) {
+            element.addEventListener('click', toggleFavorite);
+        });
+
         $("#show_schema_button").click(this.showSchema);
         $("#hide_schema_button").click(this.hideSchema);
 
