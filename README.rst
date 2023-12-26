@@ -60,9 +60,9 @@ Development
 
 To get started with development, clone the repo, and run the following commands:
 
-.. code-block:: bash
+.. code-block::
 
-    $ pip install -r requirements.txt
+    $ pip install -r requirements/django-4.1.txt
     $ npm install
     $ npm run dev &
     $ python manage.py migrate
