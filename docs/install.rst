@@ -2,7 +2,7 @@ Install
 =======
 
 * Requires Python 3.6 or higher.
-* Requires Django 2.2 or higher.
+* Requires Django 3.2 or higher.
 
 Set up a Django project with the following:
 
@@ -74,9 +74,12 @@ can use the following settings:
     EXPLORER_CONNECTIONS = { 'Default': 'default' }
     EXPLORER_DEFAULT_CONNECTION = 'default'
 
-Finally, run migrate to create the tables:
+Run migrate to create the tables:
 
 ``python manage.py migrate``
+
+Finally, you will have to serve the static files for the explorer app. You can do
+this by running ``npm install`` and then ``npm run dev`` to start the
 
 You can now browse to https://yoursite/explorer/ and get exploring!
 
