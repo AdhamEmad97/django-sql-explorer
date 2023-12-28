@@ -63,6 +63,7 @@ To get started with development, clone the repo, and run the following commands:
 .. code-block::
 
     $ pip install -r requirements/optional.txt django~=4.2
+    $ nvm use
     $ npm install
     $ npm run dev &
     $ python manage.py migrate
